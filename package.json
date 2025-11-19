@@ -10,7 +10,9 @@
     "start": "node dist/server.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "verify": "node verify-deployment.js",
+    "test:db": "node test-mongodb.js"
   },
   "keywords": [],
   "author": "",

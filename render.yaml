@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: hansa-backend
+    runtime: node
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: BREVO_FROM_EMAIL
+        sync: false
+      - key: BREVO_FROM_NAME
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: APP_NAME
+        sync: false
+      - key: RESET_TOKEN_TTL_MIN
+        sync: false
+      - key: RESEND_WINDOW_SEC
+        sync: false
+      - key: RESEND_MAX_PER_WINDOW
+        sync: false
+      - key: RESEND_MIN_INTERVAL_SEC
+        sync: false
+      - key: TWOFA_TTL_MIN
+        sync: false
