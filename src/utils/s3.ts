@@ -1,3 +1,7 @@
+// NOTA: S3 no está en uso actualmente. Se usa Cloudinary en su lugar.
+// Este archivo está deshabilitado. Descomentar si se necesita AWS S3.
+
+/*
 import { PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
 import { s3Client } from "../config/s3";
@@ -40,3 +44,9 @@ export function publicUrl(key: string) {
 export async function removeObject(key: string) {
   await s3Client.send(new DeleteObjectCommand({ Bucket: BUCKET, Key: key }));
 }
+*/
+
+// Exportar funciones dummy para evitar errores de importación
+export const uploadBufferPublic = async () => { throw new Error("S3 no configurado"); };
+export const publicUrl = () => { throw new Error("S3 no configurado"); };
+export const removeObject = async () => { throw new Error("S3 no configurado"); };

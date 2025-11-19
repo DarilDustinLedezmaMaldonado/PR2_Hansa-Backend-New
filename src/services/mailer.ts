@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+// import fetch from "node-fetch"; // No necesario, usar fetch nativo de Node 18+
 import { env } from "../config/env";
 import { 
   passwordResetTemplate, 

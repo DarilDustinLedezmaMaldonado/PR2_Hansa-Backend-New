@@ -4,7 +4,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
-import cookieParser from "cookie-parser";
+// import cookieParser from "cookie-parser"; // No usado
 
 import { logger } from "./utils/logger";
 import { corsOptions } from "./config/cors";
@@ -25,7 +25,7 @@ app.use(helmet());
 app.use(cors(corsOptions));
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
-app.use(cookieParser());
+// app.use(cookieParser()); // No usado actualmente
 
 // 🧾 Logs HTTP
 app.use(
