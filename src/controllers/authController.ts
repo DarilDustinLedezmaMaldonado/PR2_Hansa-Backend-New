@@ -149,8 +149,9 @@ export const login: RequestHandler = async (req, res) => {
     });
     return;
   } catch (err) {
-    logger.error(err);
-    res.status(500).json({ message: "Error en el servidor." });
+    logger.error('[login] Error:', err instanceof Error ? err.message : JSON.stringify(err));
+    console.error('[login] Stack:', err);
+    res.status(500).json({ message: "Error en el servidor.", error: err instanceof Error ? err.message : 'Error desconocido' });
     return;
   }
 };
