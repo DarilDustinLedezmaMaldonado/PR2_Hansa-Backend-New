@@ -4,6 +4,10 @@ import { verificationCodeTemplate } from '../templates/emailTemplates';
 
 export const sendVerificationEmail = async (to: string, code: string, username: string = 'Usuario') => {
   try {
+    console.log('[sendEmail] BREVO_API_KEY presente:', !!env.BREVO_API_KEY);
+    console.log('[sendEmail] BREVO_API_KEY length:', env.BREVO_API_KEY?.length);
+    console.log('[sendEmail] BREVO_FROM_EMAIL:', env.BREVO_FROM_EMAIL);
+    
     const htmlContent = verificationCodeTemplate(code, username);
     const textContent = `Hola ${username}, tu código de verificación es: ${code}. Este código expira en 5 minutos.`;
 
