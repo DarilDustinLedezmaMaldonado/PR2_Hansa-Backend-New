@@ -158,6 +158,7 @@ export const getRepositoryById = async (req: Request, res: Response) => {
     const repoId = req.params.id;
     const repo = await Repository.findById(repoId)
       .populate("owner", "username email")
+      .populate({ path: "participants.user", select: "username email" })
       .lean();
 
     if (!repo) {
