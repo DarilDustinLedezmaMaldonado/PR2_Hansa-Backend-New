@@ -6,6 +6,7 @@ import {
   getFilesByRepositoryId,
   getMyFiles,
   downloadById,
+  deleteFile,
 } from "../controllers/fileController";
 
 const router = express.Router();
@@ -24,5 +25,8 @@ router.get("/repo/:repoId", verifyToken, getFilesByRepositoryId);
 
 // Descargar por id (GridFS)
 router.get("/:id/download", verifyToken, downloadById);
+
+// Eliminar archivo
+router.delete("/:id", verifyToken, deleteFile);
 
 export default router;

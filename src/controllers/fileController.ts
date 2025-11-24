@@ -132,3 +132,43 @@ export const downloadById: RequestHandler = async (req, res) => {
     return;
   }
 };
+
+// DELETE /api/files/:id
+export const deleteFile: RequestHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = (req as any).user?.id;
+
+    const doc = await File.findById(id);
+    if (!doc) {
+      res.status(404).json({ message: "Archivo no encontrado" });
+      return;
+    }
+
+    // Verificar que el usuario sea el que subió el archivo o el owner del repositorio
+    // (puedes agregar más lógica de permisos según necesites)
+    if (doc.uploadedBy?.toString() !== userId) {
+      // Aquí podrías verificar también si es owner del repo
+      // Por ahora permitimos solo al que subió el archivo
+      res.status(403).json({ message: "No tienes permiso para eliminar este archivo" });
+      return;
+    }
+
+    // Eliminar de GridFS
+    const storage = doc.storagePath || "";
+    if (storage.startsWith("gridfs:")) {
+      const gridId = new ObjectId(storage.split(":")[1]);
+      await gfsBucket.delete(gridId);
+    }
+
+    // Eliminar de MongoDB
+    await File.findByIdAndDelete(id);
+
+    res.status(200).json({ message: "Archivo eliminado exitosamente" });
+    return;
+  } catch (error) {
+    logger.error("Error al eliminar archivo:", error);
+    res.status(500).json({ message: "Error interno del servidor" });
+    return;
+  }
+};
