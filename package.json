@@ -12,7 +12,9 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --write .",
     "verify": "node verify-deployment.js",
-    "test:db": "node test-mongodb.js"
+    "test:db": "node test-mongodb.js",
+    "backup": "node backup-database-mongoose.js",
+    "backup:mongodump": "node backup-database.js"
   },
   "keywords": [],
   "author": "",
